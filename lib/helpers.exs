@@ -1,4 +1,4 @@
-defmodule AOC do
+defmodule Helpers do
   @moduledoc """
   Helper functions.
   """
@@ -11,8 +11,10 @@ defmodule AOC do
   def printlines(enum) do
     Enum.each(enum, fn(x) -> IO.puts x end)
   end
-end
 
-import AOC
-readlines("lib/test.txt")
-|> printlines
+  def async_map(collection, func) do
+    collection
+    |> Enum.map(&(Task.async(fn -> func.(&1) end)))
+    |> Enum.map(&Task.await/1)
+  end
+end

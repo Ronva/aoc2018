@@ -14,7 +14,7 @@ defmodule Day1 do
   end
 
   def run(path, find_repeat \\ false) do
-    import AOC, only: [readlines: 1]
+    import Helpers, only: [readlines: 1]
     readlines(path)
     |> frequency(find_repeat)
   end
